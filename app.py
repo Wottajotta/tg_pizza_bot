@@ -2,6 +2,7 @@ import asyncio
 import os
 
 from aiogram import Bot,types, Dispatcher
+from aiogram.enums import ParseMode
 from dotenv import find_dotenv, load_dotenv
 # Считываем токен из переменных окружения (.env)
 load_dotenv(find_dotenv())
@@ -12,7 +13,7 @@ from handlers.user_group import user_group_router
 
 ALLOWED_UPDATES = ['message', 'edited_message']
 
-bot = Bot(token=os.getenv('TOKEN'))
+bot = Bot(token=os.getenv('TOKEN'), parse_mode=ParseMode.HTML)
 dp = Dispatcher()
 
 dp.include_routers(user_private_router, user_group_router)
